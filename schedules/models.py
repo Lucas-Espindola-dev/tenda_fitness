@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 SPORT_CHOICES = (
-    ('BEACH TENIS', 'Beach tennis'),
+    ('BEACH TENNIS', 'Beach tennis'),
     ('VOLEI', 'Volei'),
     ('FUTVOLEI', 'Futvolei')
 )
@@ -17,7 +18,7 @@ TIME_CHOICES = (
 
 class Appointment(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     day = models.DateField()
     time = models.CharField(max_length=255, choices=TIME_CHOICES, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
