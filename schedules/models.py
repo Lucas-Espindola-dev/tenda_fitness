@@ -23,3 +23,6 @@ class Appointment(models.Model):
     time = models.CharField(max_length=255, choices=TIME_CHOICES, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     sport = models.CharField(max_length=255, choices=SPORT_CHOICES, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username} | day: {self.day} | time: {self.time}"
