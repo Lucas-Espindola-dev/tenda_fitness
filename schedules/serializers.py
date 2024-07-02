@@ -27,7 +27,7 @@ class UserAppointmentsSerializer(serializers.ModelSerializer):
         return Appointment.objects.filter(user=obj, day__gte=today).values('day', 'time')
 
 
-class AvailiableSlots(serializers.ModelSerializer):
+class AvailiableSlotsSerializer(serializers.ModelSerializer):
     availible_slots = serializers.SerializerMethodField()
 
     def get_availible_slots(self, obj):
