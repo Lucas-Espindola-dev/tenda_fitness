@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import timedelta
 
 
 SPORT_CHOICES = (
@@ -27,6 +28,19 @@ class Appointment(models.Model):
 
     class Meta:
         unique_together = ('day', 'time')
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.repeat:
+            for c in range(1,9):
+                new_day = self.day + timedelta(weeks=c)
+                Appointment.objects.create(
+                    user=self.user,
+                    day=new_day,
+                    time=self.time,
+                    sport=self.sport,
+                    repeat=False,
+                )
 
     def __str__(self):
         return f"{self.user.username} | day: {self.day} | time: {self.time}"
