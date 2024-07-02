@@ -20,9 +20,10 @@ class Appointment(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     day = models.DateField()
-    time = models.CharField(max_length=255, choices=TIME_CHOICES, blank=True, null=True)
+    time = models.CharField(max_length=255, choices=TIME_CHOICES,)
     date_created = models.DateTimeField(auto_now_add=True)
     sport = models.CharField(max_length=255, choices=SPORT_CHOICES, blank=True, null=True)
+    repeat = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('day', 'time')
