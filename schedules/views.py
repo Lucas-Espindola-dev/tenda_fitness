@@ -1,6 +1,7 @@
 from rest_framework import generics
 from schedules.models import Appointment
-from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer
+from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
@@ -27,3 +28,8 @@ class AvailibleSlotsView(generics.ListAPIView):
                 return []
         return []
 
+
+class UserAppointmentsView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserAppointmentsSerializer
+    lookup_field = 'username'
