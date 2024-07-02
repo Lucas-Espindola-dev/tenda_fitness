@@ -25,3 +25,13 @@ class UserAppointmentsSerializer(serializers.ModelSerializer):
     def get_booked_slots(self, obj):
         today = datetime.today().date()
         return Appointment.objects.filter(user=obj, day__gte=today).values('day', 'time')
+
+
+class AvailiableSlots(serializers.ModelSerializer):
+    availible_slots = serializers.SerializerMethodField()
+
+    def get_availible_slots(self, obj):
+        booked_slots = Appointment.objects.filter(day=obj['day']).values_list('time', flat=True)
+        all_slots = [f'{hour}:00' for hour in range(17, 23)]
+        availible_slots = [slot for slot in all_slots if slot not in booked_slots]
+        return availible_slots
