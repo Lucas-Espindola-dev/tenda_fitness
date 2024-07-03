@@ -5,17 +5,17 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 
-class AppointmentCreateListView(generics.ListCreateAPIView):
+class AppointmentCreateListAPIView(generics.ListCreateAPIView):
     serializer_class = AppointmentModelSerializer
     queryset = Appointment.objects.all()
 
 
-class AppoitmentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+class AppoitmentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AppointmentModelSerializer
     queryset = Appointment.objects.all()
 
 
-class AvailibleSlotsView(generics.ListAPIView):
+class AvailibleSlotsAPIView(generics.ListAPIView):
     serializer_class = AvailiableSlotsSerializer
 
     def get_queryset(self):
@@ -29,7 +29,7 @@ class AvailibleSlotsView(generics.ListAPIView):
         return []
 
 
-class UserAppointmentsView(generics.RetrieveAPIView):
+class UserAppointmentsAPIView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserAppointmentsSerializer
     lookup_field = 'username'
