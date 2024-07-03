@@ -3,8 +3,11 @@ from schedules.views import AppointmentCreateListView, AppoitmentRetrieveUpdateD
 
 
 urlpatterns = [
-    path('appointment/', AppointmentCreateListView.as_view(), name='appointment-create-list'),
-    path('appointment/<int:pk>/', AppoitmentRetrieveUpdateDestroyView.as_view(), name='appointment-detail-view'),
-    path('users/<str:username>/bookings/', UserAppointmentsView.as_view(), name='user-bookings'),
-    path('availible-slots/', AvailibleSlotsView.as_view(), name='availible-slots'),
+    path('api/appointment/', AppointmentCreateListView.as_view(), name='appointment-create-list'),
+    path('api/appointment/<int:pk>/', AppoitmentRetrieveUpdateDestroyView.as_view(), name='appointment-detail-view'),
+    path('api/users/<str:username>/bookings/', UserAppointmentsView.as_view(), name='user-bookings'),
+    path('api/availible-slots/', AvailibleSlotsView.as_view(), name='availible-slots'),
+
+    # Urls para o site.
+
 ]
