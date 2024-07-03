@@ -1,8 +1,18 @@
 from rest_framework import generics
+from django.views.generic import ListView, CreateView
 from schedules.models import Appointment
 from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
 from datetime import datetime
+
+
+class AppointmentListView(ListView):
+    model = Appointment
+    template_name = ...
+    context_object_name = 'appointments'
+
+    def get_queryset(self):
+        return Appointment.objects.all().order_by('day')
 
 
 class AppointmentCreateListAPIView(generics.ListCreateAPIView):
