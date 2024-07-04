@@ -1,6 +1,7 @@
 from rest_framework import generics
 from django.views.generic import ListView, CreateView
 from schedules.models import Appointment
+from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -17,7 +18,7 @@ class AppointmentListView(ListView):
 
 class AppointmentCreateView(CreateView):
     model = Appointment
-    form_class = ...
+    form_class = AppointmentForm
     template_name = ...
     sucess_url = '/bookings/'
 
