@@ -9,7 +9,7 @@ from datetime import datetime
 
 class AppointmentListView(ListView):
     model = Appointment
-    template_name = ...
+    template_name = 'schedules/appointments_list.html'
     context_object_name = 'appointments'
 
     def get_queryset(self):
@@ -20,7 +20,7 @@ class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = ...
-    sucess_url = '/bookings/'
+    sucess_url = '/appointments/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
