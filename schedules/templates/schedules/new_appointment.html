@@ -1,0 +1,10 @@
+{% entends 'base.html' %}
+
+{% block content %}
+    <h2>Novo Agendamento</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Agendar</button>
+    </form>
+{% endblock %}
