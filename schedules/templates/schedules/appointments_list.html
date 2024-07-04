@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Agendamentos</h2>
+    <ul>
+        {% for appointment in appointments %}
+        <li>{{ appointment.user.username }} - {{ appointment.day }} - {{ appointment.time }} - {{ appointment.sport }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
