@@ -13,9 +13,9 @@
                 <li><a href="{% url 'available-slots-list' %">Horários Disponíveis</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user-appointments-list' user.username %}">Meus Agendamentos</a></li>
-                    <li><a>Logout</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a>Login</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
             </ul>
         </nav>
