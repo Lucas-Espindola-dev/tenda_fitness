@@ -26,6 +26,16 @@ class AppointmentCreateView(CreateView):
         return super().form_valid(form)
 
 
+class UserAppointmentsListView(ListView):
+    model = Appointment
+    template_name = ...
+    context_object_name = 'appointments'
+
+    def get_queryset(self):
+        user = User.objects.get(username=self.kwargs['username'])
+        return Appointment.objects.filter(user).order_by('-date')
+
+
 class AppointmentCreateListAPIView(generics.ListCreateAPIView):
     serializer_class = AppointmentModelSerializer
     queryset = Appointment.objects.all()
