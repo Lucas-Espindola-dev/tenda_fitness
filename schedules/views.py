@@ -36,6 +36,24 @@ class UserAppointmentsListView(ListView):
         return Appointment.objects.filter(user).order_by('-date')
 
 
+class AvailibleSlotsListView(ListView):
+    template_name = ...
+    context_object_name = 'availible_slots'
+
+    def get_queryset(self):
+        day = self.request.GET.get('day')
+        if day:
+            try:
+                day = datetime.strptime(day, '%Y-%m-%d').date()
+                booked_slots = Appointment.objects.filter(day=day).values_list('time', flat=True)
+                all_slots = [f'{hour}:00' for hour in range(17,22)]
+                availible_slots = [slot for slot in all_slots if slot not in booked_slots]
+                return availible_slots
+            except ValueError:
+                return []
+        return []
+
+
 class AppointmentCreateListAPIView(generics.ListCreateAPIView):
     serializer_class = AppointmentModelSerializer
     queryset = Appointment.objects.all()
