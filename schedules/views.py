@@ -19,7 +19,7 @@ class AppointmentListView(ListView):
 class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
-    template_name = ...
+    template_name = 'schedules/new_appointment.html'
     sucess_url = '/appointments/'
 
     def form_valid(self, form):
