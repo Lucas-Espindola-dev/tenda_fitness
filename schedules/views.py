@@ -46,7 +46,7 @@ class AvailibleSlotsListView(ListView):
             try:
                 day = datetime.strptime(day, '%Y-%m-%d').date()
                 booked_slots = Appointment.objects.filter(day=day).values_list('time', flat=True)
-                all_slots = [f'{hour}:00' for hour in range(17,22)]
+                all_slots = [f'{hour}:00' for hour in range(17, 22)]
                 availible_slots = [slot for slot in all_slots if slot not in booked_slots]
                 return availible_slots
             except ValueError:
