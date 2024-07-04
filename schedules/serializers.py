@@ -32,6 +32,6 @@ class AvailiableSlotsSerializer(serializers.ModelSerializer):
 
     def get_availible_slots(self, obj):
         booked_slots = Appointment.objects.filter(day=obj['day']).values_list('time', flat=True)
-        all_slots = [f'{hour}:00' for hour in range(17, 23)]
+        all_slots = [f'{hour}:00' for hour in range(17, 22)]
         availible_slots = [slot for slot in all_slots if slot not in booked_slots]
         return availible_slots
