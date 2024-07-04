@@ -10,4 +10,7 @@ urlpatterns = [
 
     # Urls para o site.
     path('appointments/', views.AppointmentListView.as_view(), name='appointments-list'),
+    path('appointments/new/', views.AppointmentCreateView.as_view(), name='appointments-create'),
+    path('users/<str:username>/appointments/', views.UserAppointmentsListView.as_view(), name='user-appointments-list'),
+    path('availible-slots/', views.AvailibleSlotsListView.as_view(), name='availible-slots-list'),
 ]
