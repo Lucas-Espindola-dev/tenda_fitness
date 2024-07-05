@@ -32,7 +32,7 @@ class AppointmentCreateView(CreateView):
 
 class UserAppointmentsListView(ListView):
     model = Appointment
-    template_name = ...
+    template_name = 'schedules/user_appointments_list.html'
     context_object_name = 'appointments'
 
     def get_queryset(self):
