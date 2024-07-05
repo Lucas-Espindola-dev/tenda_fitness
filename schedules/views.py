@@ -1,5 +1,6 @@
 from rest_framework import generics
 from django.views.generic import ListView, CreateView
+from django.urls import reverse
 from schedules.models import Appointment
 from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
@@ -20,11 +21,13 @@ class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = 'schedules/new_appointment.html'
-    sucess_url = '/appointments/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('appointments-list')
 
 
 class UserAppointmentsListView(ListView):
