@@ -1,0 +1,17 @@
+{% extends ''base.html %}
+
+{% block content %}
+    <h2>Horários Disponíveis</h2>
+    <form method="get">
+        <label for="day">Escolha o dia: </label>
+        <input type="date" id="day" name="day" required>
+        <button type="submit">Verificar</button>
+    </form>
+    <ul>
+        {% if availible_slots %}
+            {% for slot in availible_slots %}
+                <li>{{ slot }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endblock %}
