@@ -1,38 +1,10 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-    <h2>Novo Agendamento</h2>
-    <form method="get" action="{% url 'appointments-create' %}">
-        <div>
-            <label for="day">Escolha o dia</label>
-            <input type="date" id="day" required value="{{ request.GET.day }}">
-            <button type="submit">Verificar Horários Disponíveis:</button>
-        </div>
-    </form>
-
-    {% if availible_slots %}
-        <form method="post" action="{% url 'appointments-create' %}">
-            {% csrf_token %}
-            <input type="hidden" name="day" value="{{ request.GET.day }}">
-            <div>
-                <h3>Horários Disponíveis:</h3>
-                {% for slot in availible_slots %}
-                    <div>
-                        <input type="radio" id="time_{{ forloop.counter }}" name="time" value="{{ slot }}" required>
-                        <label for="time_{{ forloop.counter }}">{{ slot }}</label>
-                    </div>
-                {% endfor %}
-            </div>
-            <div>
-                <label for="sport">Esporte:</label>
-                <select id="sport" name="sport">
-                    <option value="beach_tennis">Beach Tennis</option>
-                </select>
-            </div>
-            <div>
-                <label for="repeat">Repetir Semanalmente:</label>
-                <input type="checkbox" id="repeat" name="repeat">
-            </div>
-        </form>
-    {% endif %}
+<h2>Novo Agendamento</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agendar</button>
+</form>
 {% endblock %}
