@@ -1,12 +1,9 @@
 from rest_framework import generics
-from django.views.generic import ListView, CreateView, TemplateView
-from django.urls import reverse
-from django.shortcuts import render, redirect
+from django.views.generic import ListView, CreateView
 from schedules.models import Appointment
 from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 
 
@@ -19,32 +16,15 @@ class AppointmentListView(ListView):
         return Appointment.objects.all().order_by('day')
 
 
-class AppointmentCreateView(LoginRequiredMixin, TemplateView):
+class AppointmentCreateView(CreateView):
+    model = Appointment
+    form_class = AppointmentForm
     template_name = 'schedules/new_appointment.html'
+    success_url = '/bookings/'
 
-    def get(self, request, *args, **kwargs):
-        day = request.GET.get('day')
-        availible_slots = []
-
-        if day:
-            try:
-                day = datetime.strptime(day, 'Y%-m%-d%').date()
-                booked_slots = Appointment.objects.filter(day=day).values_list('time', flat=True)
-                all_slots = [f'{hour:02}:00' for hour in range(17, 22)]
-                availible_slots = [slot for slot in all_slots if slot not in booked_slots]
-            except ValueError:
-                availible_slots = []
-
-        return render(request, self.template_name, {'availible_slots': availible_slots})
-
-    def post(self, request, *args, **kwargs):
-        form = AppointmentForm(request.POST)
-        if form.is_valid():
-            appointment = form.save(commit=False)
-            appointment.user = request.user
-            appointment.save()
-            return redirect('appointments-list')
-        return render(request, self.template_name, {'form': form})
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class UserAppointmentsListView(ListView):
