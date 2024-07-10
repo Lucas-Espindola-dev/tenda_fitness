@@ -44,6 +44,7 @@ class AppointmentCreateView(LoginRequiredMixin, TemplateView):
             appointment.user = request.user
             appointment.save()
             return redirect('appointments-list')
+        return render(request, self.template_name, {'form': form})
 
 
 class UserAppointmentsListView(ListView):
