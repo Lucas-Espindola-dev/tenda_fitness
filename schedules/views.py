@@ -1,10 +1,15 @@
 from rest_framework import generics
 from django.views.generic import ListView, CreateView
+from django.shortcuts import render
 from schedules.models import Appointment
 from .forms import AppointmentForm
-from schedules.serializers import AppointmentModelSerializer, AvailiableSlotsSerializer, UserAppointmentsSerializer
+from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
 from datetime import datetime
+
+
+def home(request):
+    return render(request, 'schedules/home.html')
 
 
 class AppointmentListView(ListView):
