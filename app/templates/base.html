@@ -11,8 +11,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'appointments-list' %}">Horários</a></li>
-                <li><a href="{% url 'appointments-create' %}">Agendar Horários</a></li>
-                <li><a href="{% url 'available-slots-list' %">Horários Disponíveis</a></li>
+                <li><a href="{% url 'appointments-create' %}">Agendar </a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user-appointments-list' user.username %}">Meus Agendamentos</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -26,5 +25,8 @@
         {% block content %}
         {% endblock %}
     </main>
+    <footer>
+        <p>&copy;Tenda Beach Club</p>
+    </footer>
 </body>
 </html>
