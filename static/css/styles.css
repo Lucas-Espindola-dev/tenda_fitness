@@ -53,5 +53,16 @@ footer {
 }
 
 .container{
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo{
+    align-self: center;
+    padding-left: 15px;
     
 }
