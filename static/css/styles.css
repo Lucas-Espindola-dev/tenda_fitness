@@ -106,3 +106,21 @@ footer {
     color: white;
     font-size: 25px;
 }
+
+.my_account_button{
+    width: auto;
+    color: #fff;
+    margin-right: 8px;
+    background: orangered;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    border: 0;
+    vertical-align: middle;
+    padding: 0;
+    font-size: 18px;
+    line-height: 2em;
+    text-decoration: none;
+    text-align: center;
+}
