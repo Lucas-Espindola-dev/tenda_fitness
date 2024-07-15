@@ -10,6 +10,7 @@
     <header>
         <nav>
             <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
                 <li><a href="{% url 'appointments-list' %}">Horários</a></li>
                 <li><a href="{% url 'appointments-create' %}">Agendar </a></li>
                 {% if user.is_authenticated %}
