@@ -21,7 +21,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('user-appointments-list')
+            return redirect('appointments-create')
         else:
             login_form = AuthenticationForm()
     else:
