@@ -89,6 +89,20 @@ footer {
     border: 0;
     vertical-align: middle;
     padding: 0;
-    font-size: 14px;
+    font-size: 18px;
+    line-height: 2em;
+    text-decoration: none;
     text-align: center;
+}
+
+.scheduling_button i{
+    padding-top: 30px;
+    font-size: 35px;
+    color: whitesmoke;
+}
+
+.scheduling_button p{
+    padding-top: -5px;
+    color: white;
+    font-size: 25px;
 }
