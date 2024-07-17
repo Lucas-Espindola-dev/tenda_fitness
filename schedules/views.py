@@ -5,6 +5,8 @@ from schedules.models import Appointment
 from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from datetime import datetime
 
 
@@ -21,6 +23,7 @@ class AppointmentListView(ListView):
         return Appointment.objects.all().order_by('day')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
