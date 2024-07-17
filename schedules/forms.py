@@ -9,5 +9,4 @@ class AppointmentForm(forms.ModelForm):
         fields = ['day', 'time', 'repeat', ]
         widgets = {
             'day': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
         }
