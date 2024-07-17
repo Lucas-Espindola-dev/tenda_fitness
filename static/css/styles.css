@@ -7,14 +7,14 @@ body {
 }
 
 header{
-    background-color: orangered;
-    color: #fff;
+    background-color: rgb(252, 252, 21);
+    color: black;
     text-align: center;
 }
 
 nav {
-    background-color: orangered;
-    color: #fff;
+    background-color: rgb(252, 252, 21);
+    color: black;
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -35,8 +35,9 @@ header nav ul li {
 
 header nav ul li a {
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-size: 16px;
+    font-weight: bold;
     padding: 15px;
     transition: all 0.3s ease;
 }
@@ -82,7 +83,7 @@ footer {
     width: 300px;
     color: #fff;
     margin-right: 8px;
-    background: orangered;
+    background: rgb(252, 252, 21);
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
@@ -94,17 +95,18 @@ footer {
     line-height: 2em;
     text-decoration: none;
     text-align: center;
+    border-radius: 5px;
 }
 
 .scheduling_button i{
     padding-top: 30px;
     font-size: 35px;
-    color: whitesmoke;
+    color: black;
 }
 
 .scheduling_button p{
     padding-top: -5px;
-    color: white;
+    color: black;
     font-size: 25px;
 }
 
@@ -112,7 +114,7 @@ footer {
     width: 300px;
     color: #fff;
     margin-right: 8px;
-    background: rgb(78, 21, 21);
+    background: rgb(53, 50, 50);
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
@@ -124,6 +126,7 @@ footer {
     line-height: 2em;
     text-decoration: none;
     text-align: center;
+    border-radius: 5px;
 }
 
 .my_account_buttom i {
@@ -140,9 +143,40 @@ footer {
 
 .main_title h2 {
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .new_appointment_form {
     text-align: center;
+}
+
+.form_day {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form_day label {
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.form_day input {
+    background-color: #98c7f5;
+    font-size: 18px;
+    padding: 2px;
+    font-family: "Roboto Mono", monospace;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
 }
