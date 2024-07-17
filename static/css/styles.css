@@ -137,3 +137,12 @@ footer {
     color: white;
     font-size: 25px;
 }
+
+.main_title h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.new_appointment_form {
+    text-align: center;
+}
