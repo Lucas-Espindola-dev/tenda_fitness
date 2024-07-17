@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Novo Agendamento</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agendar</button>
-</form>
+<div class="container">
+    <div class="main_title">
+        <h2>Novo Agendamento</h2>
+    </div>
+    <div class="new_appointment_form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form_day">
+                <label for="id_day">Data:</label>
+                {{ form.day }}
+            </div>
+            <div class="form_time">
+                <label for="id_time">Escolha seu horário:</label>
+                {{ form.time }}
+            </div>
+            <div class="form_sport">
+                <label for="id_sport">Esporte:</label>
+                {{ form.sport }}
+            </div>
+            <div class="form_repeat">
+                <label for="id_repeat">Repetir semanalmente:</label>
+                {{ form.repeat }}
+            </div>
+            <button type="submit" class="btn btn-primary">Agendar</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
