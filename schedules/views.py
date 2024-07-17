@@ -7,7 +7,6 @@ from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSe
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from datetime import datetime
 
 
 def home(request):
@@ -28,7 +27,7 @@ class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = 'schedules/new_appointment.html'
-    success_url = '/bookings/'
+    success_url = '/appointments/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
