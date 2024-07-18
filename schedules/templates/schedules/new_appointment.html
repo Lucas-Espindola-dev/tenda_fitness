@@ -12,17 +12,17 @@
                 <label for="id_day">Data:</label>
                 {{ form.day }}
             </div>
-            <div class="form_time">
-                <label for="id_time">Escolha seu horário:</label>
-                {{ form.time }}
+            {% for time in form.time %}
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btncheck1">{{ time }}</label>
             </div>
-            <div class="form_sport">
-                <label for="id_sport">Esporte:</label>
-                {{ form.sport }}
-            </div>
+            {% endfor %}
             <div class="form_repeat">
-                <label for="id_repeat">Repetir semanalmente:</label>
+                <label for="id_repeat">Repetir semanalmente:
                 {{ form.repeat }}
+                <span class="checkmark"></span>
+            </label>
             </div>
             <button type="submit" class="btn btn-primary">Agendar</button>
         </form>
