@@ -42,6 +42,7 @@ class AppointmentCreateView(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UserAppointmentsListView(ListView):
     model = Appointment
     template_name = 'schedules/user_appointments_list.html'
