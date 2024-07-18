@@ -13,9 +13,11 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Início</a></li>
+                {% if user.is_admin %}
                 <li><a href="{% url 'appointments-list' %}">Horários</a></li>
-                <li><a href="{% url 'appointments-create' %}">Agendar </a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
+                    <li><a href="{% url 'appointments-create' %}">Agendar </a></li>
                     <li><a href="{% url 'user-appointments-list' user.username %}">Meus Agendamentos</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
