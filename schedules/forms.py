@@ -1,5 +1,6 @@
 from django import forms
 from .models import Appointment, Time
+from datetime import datetime
 
 
 class AppointmentForm(forms.ModelForm):
@@ -16,10 +17,12 @@ class AppointmentForm(forms.ModelForm):
         if 'day' in self.data:
             try:
                 day = self.data.get('day')
-                self.fields['time'].queryset = Time.objects.exclude(
-                    id__in=Appointment.objects.filter(day=day).values_list('time_id', flat=True)
-                )
+                if day:
+                    day = datetime.strptime(day, '%Y-%m-%d').date()
+                    self.fields['time'].queryset = Time.objects.exclude(
+                        id__in=Appointment.objects.filter(day=day).values_list('time_id', flat=True)
+                    )
             except (ValueError, TypeError):
                 pass
         else:
-            self.fields['time'].queryset = Time.objects.none()
+            self.fields['time'].queryset = Time.objects.all()
