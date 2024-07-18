@@ -41,7 +41,7 @@ class UserAppointmentsListView(ListView):
 
     def get_queryset(self):
         user = User.objects.get(username=self.kwargs['username'])
-        return Appointment.objects.filter(user).order_by('-date')
+        return Appointment.objects.filter(user=user).order_by('-day')
 
 
 class AppointmentCreateListAPIView(generics.ListCreateAPIView):
