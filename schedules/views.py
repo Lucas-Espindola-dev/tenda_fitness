@@ -1,7 +1,7 @@
 from rest_framework import generics
 from django.views.generic import ListView, CreateView
 from django.shortcuts import render
-from schedules.models import Appointment
+from schedules.models import Appointment, Time
 from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
@@ -28,6 +28,14 @@ class AppointmentCreateView(CreateView):
     form_class = AppointmentForm
     template_name = 'schedules/new_appointment.html'
     success_url = '/appointments/'
+
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        if self.request.method == 'GET' and 'day' in self.request.GET:
+            form.fields['time'].queryset = Time.objects.exclude(
+                id__in=Appointment.objects.filter(day=self.request.GET['day']).values_list('time_id', flat=True)
+            )
+        return form
 
     def form_valid(self, form):
         form.instance.user = self.request.user
