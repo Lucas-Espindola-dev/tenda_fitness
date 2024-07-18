@@ -14,7 +14,7 @@ class Appointment(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     day = models.DateField()
-    time = models.ForeignKey(Time, on_delete=models.PROTECT)
+    time = models.ForeignKey(Time, on_delete=models.PROTECT, related_name='appointment')
     date_created = models.DateTimeField(auto_now_add=True)
     repeat = models.BooleanField(default=False)
 
