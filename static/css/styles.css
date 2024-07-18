@@ -220,3 +220,18 @@ footer {
     color: #000;
     cursor: pointer;
 }
+
+.title_user_schedules h2{
+    font-size: 45px;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding-bottom: 25px;
+    padding-left: 10px;
+}
+
+.user-appointments-list {
+    text-align: left;
+    font-size: 25px;
+
+}

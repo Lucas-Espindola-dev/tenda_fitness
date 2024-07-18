@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Agendamentos de {{ view.kwargs.username }}</h2>
-  <ul>
-    {% for appointment in appointments %}
-      <li>{{ appointment.day }} at {{ appointment.time }} - {{ appointment.sport }}</li>
-    {% endfor %}
-  </ul>
+  <div class="title_user_schedules">
+    <h2>Agendamentos de {{ view.kwargs.username }}</h2>
+  </div>
+  <div class="user-appointments-list">
+    <ul>
+      {% for appointment in appointments %}
+        <li>{{ appointment.day }} às {{ appointment.time }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 
 {% endblock %}
