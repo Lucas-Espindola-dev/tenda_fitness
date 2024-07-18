@@ -157,6 +157,7 @@ footer {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
+    padding-bottom: 25px;
 }
 
 .form_day label {
@@ -165,7 +166,7 @@ footer {
 }
 
 .form_day input {
-    background-color: #98c7f5;
+    background-color: #e2edf8;
     font-size: 18px;
     padding: 2px;
     font-family: "Roboto Mono", monospace;
@@ -179,4 +180,23 @@ footer {
     padding: 5px;
     cursor: pointer;
     border-radius: 3px;
+}
+
+.form_repeat {
+    display: block;
+    position: relative;
+    padding-top: 35px;
+    padding-left: 35px;
+    padding-bottom: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.form_repeat input{
+    font-size: large;
 }
