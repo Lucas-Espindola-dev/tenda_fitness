@@ -200,3 +200,23 @@ footer {
 .form_repeat input{
     font-size: large;
 }
+
+.form_time {
+    min-width: 100px;
+}
+
+.form_time label{
+    font-size: 2rem;
+}
+
+.form_time select{
+    appearance: none;
+    width: 50%;
+    font-size: 1rem;
+    padding: 0.5em 5em 0.5em 1em;
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+}
