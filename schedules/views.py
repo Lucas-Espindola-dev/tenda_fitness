@@ -1,6 +1,7 @@
 from rest_framework import generics
 from django.views.generic import ListView, CreateView
 from django.shortcuts import render
+from django.utils import timezone
 from schedules.models import Appointment, Time
 from .forms import AppointmentForm
 from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
@@ -26,7 +27,8 @@ class AppointmentListView(UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
 
     def get_queryset(self):
-        return Appointment.objects.all().order_by('day')
+        today = timezone.localdate()
+        return Appointment.objects.filter(day=today)
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
