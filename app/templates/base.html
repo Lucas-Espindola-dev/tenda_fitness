@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Início</a></li>
-                {% if user.is_admin %}
+                {% if user.is_authenticaded and user.is_superuser %}
                 <li><a href="{% url 'appointments-list' %}">Horários</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
