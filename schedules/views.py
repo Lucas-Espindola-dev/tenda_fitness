@@ -3,21 +3,27 @@ from django.views.generic import ListView, CreateView
 from django.shortcuts import render
 from schedules.models import Appointment, Time
 from .forms import AppointmentForm
-from .permissions import AdminRequiredMixin
 from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 def home(request):
     return render(request, 'schedules/home.html')
 
 
-class AppointmentListView(AdminRequiredMixin, ListView):
+class AppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
     template_name = 'schedules/appointments_list.html'
     context_object_name = 'appointments'
+
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
     def get_queryset(self):
         return Appointment.objects.all().order_by('day')
