@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView
 from django.shortcuts import render
 from schedules.models import Appointment, Time
 from .forms import AppointmentForm
+from .permissions import AdminRequiredMixin
 from schedules.serializers import AppointmentModelSerializer, UserAppointmentsSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -13,7 +14,7 @@ def home(request):
     return render(request, 'schedules/home.html')
 
 
-class AppointmentListView(ListView):
+class AppointmentListView(AdminRequiredMixin, ListView):
     model = Appointment
     template_name = 'schedules/appointments_list.html'
     context_object_name = 'appointments'
