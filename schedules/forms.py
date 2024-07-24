@@ -9,7 +9,13 @@ class AppointmentForm(forms.ModelForm):
         model = Appointment
         fields = ['day', 'time', 'repeat', ]
         widgets = {
-            'day': forms.DateInput(attrs={'type': 'date'}),
+            'day': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'initial': datetime.today, },),
+            'time': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
+        labels = {
+            'day': 'Data',
+            'time': 'Horário',
+            'repeat': 'Repetir Semanalmente'
         }
 
     def __init__(self, *args, **kwargs):

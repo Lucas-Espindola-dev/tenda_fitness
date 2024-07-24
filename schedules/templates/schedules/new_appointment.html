@@ -1,29 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="main_title">
-        <h2>Novo Agendamento</h2>
-    </div>
-    <div class="new_appointment_form">
+  <div class="container mt-4">
+    <h3 class="display-4">Agendar Horário</h3>
+
+    <div class="card">
+      <div class="card-body">
         <form method="post">
-            {% csrf_token %}
-            <div class="form_day">
-                <label for="id_day">Data:</label>
-                {{ form.day }}
-            </div>
-            <div class="form_time">
-                <label>Hora:</label>
-                {{ form.time }}
-            </div>
-            <div class="form_repeat">
-                <label for="id_repeat">Repetir semanalmente:
-                {{ form.repeat }}
-                <span class="checkmark"></span>
-            </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Agendar</button>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Registrar horário</button>
         </form>
-    </div>
-</div>
+      </div>
 {% endblock %}
