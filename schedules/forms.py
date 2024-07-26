@@ -4,18 +4,19 @@ from datetime import datetime
 
 
 class AppointmentForm(forms.ModelForm):
+    time = forms.ModelChoiceField(
+        queryset=Time.objects.all(),
+        widget=forms.RadioSelect,
+        required=True,
+        label="Horários",
+    )
 
     class Meta:
         model = Appointment
         fields = ['day', 'time', 'repeat', ]
         widgets = {
-            'day': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'initial': datetime.today, },),
-            'time': forms.SelectMultiple(attrs={'class': 'form-select'}),
-        }
-        labels = {
-            'day': 'Data',
-            'time': 'Horário',
-            'repeat': 'Repetir Semanalmente'
+            'day': forms.DateInput(attrs={'type': 'date'},),
+            'repeat': forms.CheckboxInput(),
         }
 
     def __init__(self, *args, **kwargs):
