@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.shortcuts import render
 from django.utils import timezone
@@ -38,19 +39,20 @@ class AppointmentCreateView(CreateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = 'schedules/new_appointment.html'
-    success_url = '/appointments/sucess/'
-
-    def get_form(self, *args, **kwargs):
-        form = super().get_form(*args, **kwargs)
-        if self.request.method == 'GET' and 'day' in self.request.GET:
-            form.fields['time'].queryset = Time.objects.exclude(
-                id__in=Appointment.objects.filter(day=self.request.GET['day']).values_list('time_id', flat=True)
-            )
-        return form
+    success_url = reverse_lazy('sucess')
 
     def form_valid(self, form):
+        print("Form is valid. Data:", form.cleaned_data)
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        print("Appointment instance:", form.instance)
+        return response
+
+    def form_invalid(self, form):
+        # Debug: Displaying form errors
+        print("Dados submetidos:", self.request.POST)
+        print("Erros no formulário:", form.errors)
+        return super().form_invalid(form)
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
