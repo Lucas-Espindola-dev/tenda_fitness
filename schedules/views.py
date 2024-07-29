@@ -41,6 +41,14 @@ class AppointmentCreateView(CreateView):
     template_name = 'schedules/new_appointment.html'
     success_url = reverse_lazy('sucess')
 
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        if self.request.method == 'GET' and 'day' in self.request.GET:
+            form.fields['time'].queryset = Time.objects.exclude(
+                id__in=Appointment.objects.filter(day=self.request.GET['day']).values_list('time_id', flat=True)
+            )
+        return form
+
     def form_valid(self, form):
         print("Form is valid. Data:", form.cleaned_data)
         form.instance.user = self.request.user
