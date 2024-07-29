@@ -1,10 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Agendamentos</h2>
-    <ul>
-        {% for appointment in appointments %}
-        <li>{{ appointment.user.username }} - {{ appointment.day }} - {{ appointment.time }} - {{ appointment.sport }}</li>
-        {% endfor %}
-    </ul>
+<div class="title_user_schedules">
+    <h2>Agendamentos do Dia:</h2>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Usuário</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.user.username }}</td>
+                <td>{{ appointment.day }}</td>
+                <td>{{ appointment.time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
