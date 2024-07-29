@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.shortcuts import render
 from django.utils import timezone
 from schedules.models import Appointment, Time
@@ -72,6 +72,21 @@ class UserAppointmentsListView(ListView):
     def get_queryset(self):
         user = User.objects.get(username=self.kwargs['username'])
         return Appointment.objects.filter(user=user).order_by('day')
+
+
+class AppointmentUpdateView(UpdateView):
+    model = Appointment
+    form_class = AppointmentForm
+    template_name = 'schedules/appointment_update.html'
+    success_url = reverse_lazy('user-appointments-list')
+
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        if self.request.method == 'GET' and 'day' in self.request.GET:
+            form.fields['time'].queryset = Time.objects.exclude(
+                id__in=Appointment.objects.filter(day=self.request.GET['day']).values_list('time_id', flat=True)
+            )
+        return form
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
