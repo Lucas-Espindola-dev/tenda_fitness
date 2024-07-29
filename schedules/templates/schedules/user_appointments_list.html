@@ -4,12 +4,19 @@
   <div class="title_user_schedules">
     <h2>Agendamentos de {{ view.kwargs.username }}</h2>
   </div>
-  <div class="user-appointments-list">
-    <ul>
-      {% for appointment in appointments %}
-        <li>{{ appointment.day }} às {{ appointment.time }}</li>
-      {% endfor %}
-    </ul>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Data</th>
+          <th>Horário</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
   </div>
 
 {% endblock %}
