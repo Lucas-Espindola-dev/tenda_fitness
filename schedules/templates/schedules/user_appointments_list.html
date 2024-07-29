@@ -14,7 +14,12 @@
         </tr>
       </thead>
       <tbody>
-        
+        {% for appointment in appointments %}
+        <tr>
+          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.time }}</td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
