@@ -20,6 +20,14 @@
                 <td>{{ appointment.user.username }}</td>
                 <td>{{ appointment.day }}</td>
                 <td>{{ appointment.time }}</td>
+                <td>
+                    <a href="{% url 'appointment-update' appointment.id %}" class="btn btn-warning btn-sm">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="{% url 'appointment-delete' appointment.id %}" class="btn btn-danger btn-sm btn-delete">
+                      <i class="bi bi-trash"></i>
+                    </a>
+                  </td>
             </tr>
             {% endfor %}
         </tbody>
