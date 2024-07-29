@@ -74,8 +74,8 @@ class UserAppointmentsListView(ListView):
         return Appointment.objects.filter(user=user).order_by('day')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class AppointmentDeleteView(DeleteView):
     model = Appointment
     template_name = 'schedules/appointment_delete.html'
     success_url = reverse_lazy('appointments-create')
-
