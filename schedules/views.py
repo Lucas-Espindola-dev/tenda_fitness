@@ -71,7 +71,8 @@ class UserAppointmentsListView(ListView):
 
     def get_queryset(self):
         user = User.objects.get(username=self.kwargs['username'])
-        return Appointment.objects.filter(user=user).order_by('day')
+        now = timezone.now()
+        return Appointment.objects.filter(user=user, day__gte=now).order_by('day', 'time')
 
 
 class AppointmentUpdateView(UpdateView):
