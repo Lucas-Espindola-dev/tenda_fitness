@@ -78,7 +78,6 @@ class AppointmentUpdateView(UpdateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = 'schedules/appointment_update.html'
-    success_url = reverse_lazy('user-appointments-list')
 
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
@@ -87,6 +86,10 @@ class AppointmentUpdateView(UpdateView):
                 id__in=Appointment.objects.filter(day=self.request.GET['day']).values_list('time_id', flat=True)
             )
         return form
+
+    def get_success_url(self):
+        username = self.request.user.username
+        return reverse_lazy('user-appointments-list', kwargs={'username': username})
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
