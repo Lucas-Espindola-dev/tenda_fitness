@@ -96,4 +96,7 @@ class AppointmentUpdateView(UpdateView):
 class AppointmentDeleteView(DeleteView):
     model = Appointment
     template_name = 'schedules/appointment_delete.html'
-    success_url = reverse_lazy('appointments-create')
+
+    def get_success_url(self):
+        username = self.request.user.username
+        return reverse_lazy('user-appointments-list', kwargs={'username': username})
