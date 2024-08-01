@@ -20,16 +20,14 @@ class AppointmentForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(AppointmentForm, self).__init__(*args, **kwargs)
+        self.fields['time'].queryset = Time.objects.none()
+
         if 'day' in self.data:
             try:
                 day = self.data.get('day')
-                if day:
-                    day = datetime.strptime(day, '%Y-%m-%d').date()
-                    self.fields['time'].queryset = Time.objects.exclude(
-                        id__in=Appointment.objects.filter(day=day).values_list('time_id', flat=True)
-                    )
+                self.fields['time'].queryset = Time.objects.filter(day=day).exclude(appointment__day=day)
             except (ValueError, TypeError):
                 pass
-        else:
-            self.fields['time'].queryset = Time.objects.all()
+        elif self.instance.pk:
+            self.fields['time'].queryset = self.instance.time.all()
